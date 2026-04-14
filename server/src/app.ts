@@ -34,10 +34,6 @@ app.get("/health", (req, res) => {
   res.status(200).json({ message: "Server is healthy" });
 });
 
-app.get("/health", (req, res) => {
-  res.status(200).json({ message: "Server is healthy" });
-});
-
 app.use("/api/v1", router);
 
 app.use(errorHandler);

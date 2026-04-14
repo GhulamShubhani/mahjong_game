@@ -1,7 +1,3 @@
-import { TileType } from "../types/game";
+import type { Tile } from "../types/game";
 
-export interface ITile extends Document {
-    id: string;
-    type : TileType;
-    value: number;
-}
+export type { Tile };
