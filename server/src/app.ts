@@ -34,7 +34,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({ message: "Server is healthy" });
 });
 
-app.get("/api/v1/health", (req, res) => {
+app.get("/health", (req, res) => {
   res.status(200).json({ message: "Server is healthy" });
 });
 
