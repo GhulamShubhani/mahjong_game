@@ -22,14 +22,3 @@ leaderboardRouter.get(
   validate(getLeaderBoardValidation, "query"),
   getLeaderBoard
 );
-// leaderboardRouter.put(
-//   "/:id",
-//   validate(idParamValidation, "params"),
-//   validate(putLeaderBoardValidation),
-//   updateLeaderBoard
-// );
-// leaderboardRouter.delete(
-//   "/:id",
-//   validate(idParamValidation, "params"),
-//   deleteLeaderBoard
-// );

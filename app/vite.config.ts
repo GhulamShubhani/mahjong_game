@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-const api = "http://localhost:3009";
+const api = "http://localhost:3010";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],

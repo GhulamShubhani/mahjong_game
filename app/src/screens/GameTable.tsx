@@ -34,6 +34,9 @@ export function GameTable({ onLeave }: Props) {
 
   const history = [...game.previousHands].reverse().slice(0, 8);
 
+  console.log(game,"game");
+  
+
   return (
     <div className="mx-auto flex min-h-screen max-w-2xl flex-col gap-4 px-3 py-6 sm:px-4">
       <div className="flex items-center justify-between gap-2">
@@ -51,6 +54,12 @@ export function GameTable({ onLeave }: Props) {
             Discard:{" "}
             <span className="font-mono text-foreground">
               {game.discardPile.length}
+            </span>
+          </div>
+          <div>
+            Score:{" "}
+            <span className="font-mono text-foreground">
+              {game.score ?? 0}
             </span>
           </div>
           <div>
