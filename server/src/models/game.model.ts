@@ -23,6 +23,10 @@ const gameSchema = new Schema(
       type: Number,
       default: 0,
     },
+    leaderboardPosted: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true },
 );

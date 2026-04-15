@@ -1,25 +1,22 @@
 import { Router } from "express";
 import {
-  createLeaderBoard,
-  deleteLeaderBoard,
+  createLeaderBoardFromGame,
   getLeaderBoard,
-  updateLeaderBoard
 } from "../controllers/leaderboard.controller";
 import { validate } from "../middlewares/validate.middleware";
 import {
   getLeaderBoardValidation,
-  idParamValidation,
-  postLeaderBoardValidation,
-  putLeaderBoardValidation
+  postLeaderboardFromGameValidation,
 } from "../validators/leaderboard.validation";
 
 export const leaderboardRouter = Router();
 
 leaderboardRouter.post(
-  "/",
-  validate(postLeaderBoardValidation),
-  createLeaderBoard
+  "/from-game",
+  validate(postLeaderboardFromGameValidation),
+  createLeaderBoardFromGame
 );
+
 leaderboardRouter.get(
   "/",
   validate(getLeaderBoardValidation, "query"),

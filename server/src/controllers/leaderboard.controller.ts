@@ -1,17 +1,38 @@
 import { Request, Response } from "express";
 import { asynchandler } from "../utils/asyncHandler";
 import { successResponse } from "../middlewares/response";
+import { AppError } from "../utils/AppError";
 import * as leaderboardService from "../services/leaderboard.service";
 
-export const createLeaderBoard = asynchandler(
+// function resolvePlayerName(req: Request, bodyName?: string) {
+//   const fromBody = bodyName?.trim();
+//   if (fromBody && fromBody.length >= 2) {
+//     return fromBody;
+//   }
+//   const fromUser = req.user?.name?.trim();
+//   if (fromUser && fromUser.length >= 2) {
+//     return fromUser;
+//   }
+//   return null;
+// }
+
+// export const createLeaderBoard = asynchandler(
+//   async (req: Request, res: Response) => {
+//     const body = req.body as { name?: string; score: number };
+//     const name = resolvePlayerName(req, body.name);
+//     if (!name) {
+//       throw new AppError("name is required (min 2 characters)", 400);
+//     }
+//     const entry = await leaderboardService.submitScore(name, body.score);
+//     return successResponse(res, entry, "Score recorded", 201);
+//   }
+// );
+
+export const createLeaderBoardFromGame = asynchandler(
   async (req: Request, res: Response) => {
-    const body = req.body as { name?: string; score: number };
-    const name =
-      body.name?.trim() && body.name.trim().length >= 2
-        ? body.name.trim()
-        : req.user!.name;
-    const entry = await leaderboardService.submitScore(name, body.score);
-    return successResponse(res, entry, "Score recorded", 201);
+    const { gameId, name } = req.body as { gameId: string; name: string };
+    const entry = await leaderboardService.submitScoreFromGame(gameId, name);
+    return successResponse(res, entry, "Score recorded from game", 201);
   }
 );
 
@@ -27,19 +48,19 @@ export const getLeaderBoard = asynchandler(
   }
 );
 
-export const updateLeaderBoard = asynchandler(
-  async (req: Request, res: Response) => {
-    const id = String(req.params.id);
-    const { name, score } = req.body as { name: string; score: number };
-    const entry = await leaderboardService.updateEntry(id, name, score);
-    return successResponse(res, entry, "Updated");
-  }
-);
+// export const updateLeaderBoard = asynchandler(
+//   async (req: Request, res: Response) => {
+//     const id = String(req.params.id);
+//     const { name, score } = req.body as { name: string; score: number };
+//     const entry = await leaderboardService.updateEntry(id, name, score);
+//     return successResponse(res, entry, "Updated");
+//   }
+// );
 
-export const deleteLeaderBoard = asynchandler(
-  async (req: Request, res: Response) => {
-    const id = String(req.params.id);
-    const removed = await leaderboardService.removeEntry(id);
-    return successResponse(res, removed, "Deleted");
-  }
-);
+// export const deleteLeaderBoard = asynchandler(
+//   async (req: Request, res: Response) => {
+//     const id = String(req.params.id);
+//     const removed = await leaderboardService.removeEntry(id);
+//     return successResponse(res, removed, "Deleted");
+//   }
+// );
