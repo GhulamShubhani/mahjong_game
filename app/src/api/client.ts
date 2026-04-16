@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, isAxiosError } from "axios";
 import type { ApiErrorBody, ApiSuccess } from "./types";
 
 function getBaseUrl() {
-  return import.meta.env.VITE_API_URL ?? "";
+  return import.meta.env.VITE_API_URL ?? import.meta.env.VITE_API_URL_LOCAL;
 }
 
 export const apiClient: AxiosInstance = axios.create({

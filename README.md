@@ -285,8 +285,8 @@ State is managed by:
 
 ## Troubleshooting
 
-- **Backend fails to start**: check `MONGODB_URI` and Mongo access/network
-- **Frontend cannot call API**: ensure backend is running at `http://localhost:3009`
+- **Backend fails to start**: check `MONGODB_URI`, Mongo access/network, and `PORT` in `server/.env`.
+- **Frontend cannot call API**: verify `VITE_API_URL` in `app/.env` and ensure it points to a running backend (local: `http://localhost:3009`, deployed: `https://mahjong-game-g1ou.onrender.com`).
 - **CORS issues**: use localhost origin or update CORS policy in `server/src/app.ts`
 - **Empty leaderboard**: expected for fresh DB until a game is completed and submitted
 
@@ -313,9 +313,17 @@ Update this section to reflect your exact process before submission:
   - README drafting/formatting and wording cleanup
   - Minor refactor suggestions and code review support
 
-## Future Improvements
 
-- Add automated tests (unit/integration/E2E)
-- Add authentication and per-user score history
-- Add richer Mahjong visuals and animations
-- Add analytics and game replay insights
+## Deployed URLs
+
+### Backend (Render)
+
+- Base URL: `https://mahjong-game-g1ou.onrender.com`
+- Health check: `https://mahjong-game-g1ou.onrender.com/health`
+- Game API base: `https://mahjong-game-g1ou.onrender.com/api/v1/game`
+- Leaderboard API base: `https://mahjong-game-g1ou.onrender.com/api/v1/leaderboard`
+
+### Frontend (Vercel)
+
+- App URL: `https://mahjong-game-njukc7217-ghulamshubhanis-projects.vercel.app/`
+

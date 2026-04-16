@@ -8,6 +8,10 @@ const app = express();
 const devOrigin =
   /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
+const allowedOrigins = [
+  "https://mahjong-game-njukc7217-ghulamshubhanis-projects.vercel.app"
+];
+
 app.use(
   cors({
     origin(origin, callback) {
@@ -15,11 +19,18 @@ app.use(
         callback(null, true);
         return;
       }
+
       if (devOrigin.test(origin)) {
-        callback(null, origin);
+        callback(null, true);
         return;
       }
-      callback(null, false);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
@@ -30,6 +41,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Server is running" });
+});
 app.get("/health", (req, res) => {
   res.status(200).json({ message: "Server is healthy" });
 });
